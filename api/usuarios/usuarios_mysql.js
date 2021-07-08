@@ -72,12 +72,6 @@ const userMysql = {
                     delete user.passwordpropio;
 
 
-                    
-
-
-
-
-                    
 
                     token = Jwt.sign({
                         nombre: user.nomusu,
@@ -96,30 +90,72 @@ const userMysql = {
                 .catch(err => { db.close(); reject(err); });
         });
     },
-    verifyGeneralDirectory: () => {
-        // Directorio general de ficheros
-        genDir = Path.join(__dirname, '../../ficheros');
-        //genDir = Path.join(process.env.TRZ2_DIRFICHEROS);
-        if (!Fs.existsSync(genDir)) {
-            // Si no existe el directorio general se crea
-            Fs.mkdirSync(genDir);
-        }
-        fotoDir = genDir + "/fotos";
-        if (!Fs.existsSync(fotoDir)) {
-            // Si no existe el directorio de fotos se crea
-            Fs.mkdirSync(fotoDir);
-        }
-        return;
+    postAnyadeUsuario: (usuario) => {
+        return new Promise(async (resolve, reject) => {
+            let conn = undefined;
+            try {
+                conn = await mysql2.createConnection(confMysql.getConf());
+                let sql = `START TRANSACTION`;
+                await conn.query(sql);
+
+                sql = `select max(codusu) id,sum(if(login='root',1,0)) existe from usuarios u  `;
+                const [ID] = await conn.query(sql);
+                
+                if (!ID) {
+                    // No se ha encontrado el palet
+                    await conn.query('ROLLBACK');
+                    await conn.end();
+                    let err = new Error('NO se ha encontrado usuarios');
+                    err.status = 404;
+                    return reject(err);
+                };
+                if (ID.existe>=1) {
+                    // No se ha encontrado el palet
+                    await conn.query('ROLLBACK');
+                    await conn.end();
+                    let err = new Error('Ya existe el usuario usuarios');
+                    err.status = 404;
+                    return reject(err);
+                }
+
+                // Elimar el rfid del palet original marcándolo como abocado
+                //sql = `UPDATE trzpalets SET estado = 1 WHERE idpalet = ${palete.idpalet} AND tipo = ${palete.tipo}`;
+                //await conn.query(sql);
+                passwordcrypt=passU.crear(usuario.passwordpropio);
+                usuario.passwordpropio=passwordcrypt;
+                usuario.codusu=ID.id;
+
+                
+
+
+                /*
+                const bolsa = {
+                    idpalet: palete.idpalet,
+                    linea: linea,
+                    tipo: palete.tipo,
+                    fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    codvarie: palete.codvarie,
+                    numkilos: palete.numkilos,
+                    numcajones: palete.numcajones,
+                    codsocio: palete.codsocio,
+                    codcampo: palete.codcampo
+                }
+                */
+                sql = `INSERT INTO usuarios SET ?`;
+                await conn.query(sql, bolsa);
+
+                await conn.query('COMMIT');
+                await conn.end();
+                resolve('SUCCESS');
+            } catch (error) {
+                if (conn) {
+                    await conn.query('ROLLBACK');
+                    await conn.end();
+                }
+                reject(error);
+            }
+        })
     },
-    verifyUserDirecory: (usuario_id) => {
-        usuDir = Path.join(__dirname, '../../ficheros') + '/U' + usuario_id;
-        //usuDir = Path.join(process.env.TRZ2_DIRFICHEROS) + '/U' + usuario_id;
-        if (!Fs.existsSync(usuDir)) {
-            // Si no existe el directorio de fotos se crea
-            Fs.mkdirSync(usuDir);
-        }
-        return;
-    }
 };
 
 async function EncuentraUsuario(login){

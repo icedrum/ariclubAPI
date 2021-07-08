@@ -1,0 +1,789 @@
+{
+	"info": {
+		"_postman_id": "cf1e4bef-15e6-4244-a579-d391204bf63a",
+		"name": "TRAZA2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/version",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"version"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"root\",\r\n    \"password\":\"aritel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/usuarios/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Palets de entrada",
+			"item": [
+				{
+					"name": "Obtener las lineas de confección",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/palets-entrada/lineas-confeccion",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"palets-entrada",
+								"lineas-confeccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener palets entrados y no abocados.",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/palets-entrada/no-abocados",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"palets-entrada",
+								"no-abocados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Abocar un palet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"linea\": 1,\r\n    \"crfid\": \"20170308401451400139\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/palets-entrada/abocar-palet",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"palets-entrada",
+								"abocar-palet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer palet entrado por su código de barras",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": \"201703084014508003\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/palets-entrada/buscar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"palets-entrada",
+								"buscar"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Traza",
+			"item": [
+				{
+					"name": "Obtener las lineas de confección traza",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/lineas-confeccion",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"lineas-confeccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener cabeceras de las bolsas de confección",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/bolsas-cabecera",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"bolsas-cabecera"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener bolsas detalle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/bolsas-detalle",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"bolsas-detalle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener bolsas detalle agrupado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/bolsas-detalle-agrupado",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"bolsas-detalle-agrupado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Palets confeccionados abiertos.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/palets-abiertos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palets-abiertos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Palets confeccionados cerrados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/palets-cerrados",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palets-cerrados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Palets confeccionados cerrados no asignados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/palets-cerrados-noasignados",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palets-cerrados-noasignados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Palets confeccionados cerrados asignados no servidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/palets-cerrados-noservidos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palets-cerrados-noservidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traza de los palets confeccionados",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/palets-traza",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palets-traza"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cerrar palet confeccionado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet\":660\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/cerrar-confeccionado",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"cerrar-confeccionado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cerrar palet confeccionado linea",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet\":653,\r\n    \"linea\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/cerrar-confeccionado-linea",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"cerrar-confeccionado-linea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vaciar la linea de confección",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"linea\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/vaciar-linea",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"vaciar-linea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener bolsas variedad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"linea\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/obtener-bolsas-variedad",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"obtener-bolsas-variedad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vaciar la linea de confección variedad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"linea\":3,\r\n    \"codvarie\": 301\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/vaciar-linea-variedad",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"vaciar-linea-variedad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un palet confeccionado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet\": \"0000645\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/palet-confeccionado",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palet-confeccionado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un palet confeccionado resumen",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet\": \"0000645\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/palet-confeccionado-resumen",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palet-confeccionado-resumen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar un palet confeccionado.",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet\": 645,\r\n    \"codlinconfe\": 2,\r\n    \"fechaini\": \"2020-11-27\",\r\n    \"horaini\": \"2020-11-27 08:00:00\",\r\n    \"pesobruto\": 133,\r\n    \"pesoneto\": 105\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/palet-confeccionado-modificar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palet-confeccionado-modificar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar palet entrado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idpalet\": 75119,\r\n    \"kilos\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/recuperar-palet",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"recuperar-palet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedidos no servidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/traza/pedidos-noservidos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"pedidos-noservidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asignar palet a pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet\": 58669999,\r\n    \"numpedid\": 33\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/asignar-palet-pedido",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"asignar-palet-pedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desasignar un palet de pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet\": 658\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/desasignar-palet-pedido",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"desasignar-palet-pedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener palets de un pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpedid\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/palets-pedido",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"palets-pedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resto de un palet abocado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idpalet\": 77783,\r\n    \"linconfe\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/resto-palet-abocado",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"resto-palet-abocado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destrio de palet abocado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idpalet\": 77783,\r\n    \"linconfe\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/destrio-palet-abocado",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"destrio-palet-abocado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reasignar cajas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numpalet_destino\": 650,\r\n    \"numpalet_origen\": 649,\r\n    \"numlinea\": 1,\r\n    \"numcajas\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/traza/reasignar-cajas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"traza",
+								"reasignar-cajas"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

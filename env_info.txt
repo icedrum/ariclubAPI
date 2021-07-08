@@ -1,0 +1,13 @@
+TRZ2_PORT = Puerto por el que atenderá la aplicación
+
+TRZ2_WINSTON_FILELEVEL = info
+TRZ2_WINSTON_CONSOLELEVEL = debug
+
+TRZ2_JWT_KEY = Clave secreta con la que se codifican los mensajes (elegir la que se quiera)
+
+TRZ2_MYSQL_HOST = IP o mobre del servidor mysql
+TRZ2_MYSQL_USER = Usuario de mysql
+TRZ2_MYSQL_PASSWORD = Password del usuatio
+TRZ2_MYSQL_DBGESTION = Base de datos de producción
+TRZ2_MYSQL_PORT = Puerto de mysql
+

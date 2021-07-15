@@ -63,10 +63,10 @@ const userMysql = {
                         return reject({ status: 401, message: `Falló la autentificación` });
                     }
                     user = rows[0];
-
+                    console.log(passU);
                     let passEncriptadoOk=passU.validate(user.passwordpropio,obj.password);
                     if (!passEncriptadoOk) {
-                        return reject({ status: 401, message: `Falló la autentificación` });
+                        return reject({ status: 401, message: `Falló LA autentificación` });
                     }
                     
                     delete user.passwordpropio;

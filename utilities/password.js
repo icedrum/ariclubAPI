@@ -16,6 +16,11 @@ function createHash(password) {
 function validateHash(hash, password) {
   var salt = hash.substr(0, SaltLength);
   var validHash = salt + md5(password + salt);
+
+
+
+console.log(validHash);
+
   return hash === validHash;
 }
 

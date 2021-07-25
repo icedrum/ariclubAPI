@@ -21,13 +21,13 @@ app.use('/ficheros', Express.static(__dirname + '/ficheros'), ServeIndex(__dirna
 
 app.use('/version', require('./api/version/version_controller'));
 app.use('/test', require('./api/test/test_controller'));
-app.use('/usuarios', require('./api/usuarios/usuarios_controller'));
+app.use('/api/usuarios', require('./api/usuarios/usuarios_controller'));
 /*
 app.use('/correo', require('./api/correo/correo_controller'));
 app.use('/palets-entrada', require('./api/palets-entrada/palets-entrada_controller'));
 app.use('/traza', require('./api/traza/traza_controller'));
 */
-app.use('/club', require('./api/club/club_controller'));
+app.use('/api/club', require('./api/club/club_controller'));
 
 
 app.get('/*', function(req, res) {

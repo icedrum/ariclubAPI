@@ -18,8 +18,9 @@ function validateHash(hash, password) {
   var validHash = salt + md5(password + salt);
 
 
-
-console.log(validHash);
+//console.log('Calculado--->',validHash);
+//console.log('H--->',hash);
+//console.log('pas--->',password);
 
   return hash === validHash;
 }

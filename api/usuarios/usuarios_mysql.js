@@ -60,13 +60,15 @@ const userMysql = {
                 .then(rows => {
                     db.close();
                     if (rows.length == 0) {
-                        return reject({ status: 401, message: `Falló la autentificación` });
+                        return reject({ status: 401, message: `Usuario incorrecto` });
                     }
+
+
                     user = rows[0];
-                    console.log(passU);
+                    
                     let passEncriptadoOk=passU.validate(user.passwordpropio,obj.password);
                     if (!passEncriptadoOk) {
-                        return reject({ status: 401, message: `Falló LA autentificación` });
+                        return reject({ status: 401, message: `Usuario no autenticado` });
                     }
                     
                     delete user.passwordpropio;
@@ -82,8 +84,10 @@ const userMysql = {
                             expiresIn: "5h"
                         });
                     resolve({
-                        usuario: user,
-                        version: Pack.version,
+                        ok: true,
+                        codusu: user.codusu,
+                        nomusu: user.nomusu,
+                        nivelusu: user.nivelusu,
                         token: token
                     });
                 })
@@ -124,24 +128,8 @@ const userMysql = {
                 passwordcrypt=passU.crear(usuario.passwordpropio);
                 usuario.passwordpropio=passwordcrypt;
                 usuario.codusu=ID.id;
-
                 
-
-
-                /*
-                const bolsa = {
-                    idpalet: palete.idpalet,
-                    linea: linea,
-                    tipo: palete.tipo,
-                    fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
-                    codvarie: palete.codvarie,
-                    numkilos: palete.numkilos,
-                    numcajones: palete.numcajones,
-                    codsocio: palete.codsocio,
-                    codcampo: palete.codcampo
-                }
-                */
-                sql = `INSERT INTO usuarios SET ?`;
+               sql = `INSERT INTO usuarios SET ?`;
                 await conn.query(sql, bolsa);
 
                 await conn.query('COMMIT');
@@ -156,6 +144,39 @@ const userMysql = {
             }
         })
     },
+
+    
+    renew: (req) => {
+        return new Promise(async (resolve, reject) => {
+
+    
+            const token= req.headers['x-token'];
+            const {uid,nombre}=req;
+            console.log(req,nombre);
+
+            if (!token){
+                let err = new Error('No viene token');
+                err.status = 404;
+                return reject(err);
+            }
+
+              
+
+
+
+                resolve({
+                    usuario: 'user',
+                    token: token
+                });
+
+
+
+
+
+           
+        } 
+    )},
+
 };
 
 async function EncuentraUsuario(login){

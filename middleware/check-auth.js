@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     //let token = req.h     eaders.token;
     try {
         let decode = Jwt.verify(token, process.env.TRZ2_JWT_KEY);
-        //c onsole.log (decode);
+        console.log (decode);
         req.usuario_id =decode.usuario_id;
         req.nombre=decode.nombre;
         console.log (req.nombre);

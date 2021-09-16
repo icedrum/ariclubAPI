@@ -122,7 +122,7 @@ const userMysql = {
                     return reject(err);
                 }
 
-                // Elimar el rfid del palet original marcándolo como abocado
+               // Elimar el rfid del palet original marcándolo como abocado
                 //sql = `UPDATE trzpalets SET estado = 1 WHERE idpalet = ${palete.idpalet} AND tipo = ${palete.tipo}`;
                 //await conn.query(sql);
                 passwordcrypt=passU.crear(usuario.passwordpropio);
@@ -150,10 +150,10 @@ const userMysql = {
         return new Promise(async (resolve, reject) => {
 
     
-            const token= req.headers['x-token'];
-            const {uid,nombre}=req;
-            console.log(req,nombre);
-
+            const {usuario_id,nombre}=req;
+            console.log('lo',usuario_id,nombre);
+            var token= req.headers['x-token'];
+            
             if (!token){
                 let err = new Error('No viene token');
                 err.status = 404;
@@ -162,18 +162,25 @@ const userMysql = {
 
               
 
-
-
+            try{
+                token = Jwt.sign({
+                    nombre: nombre,
+                    usuario_id: usuario_id
+                },
+                    process.env.TRZ2_JWT_KEY,
+                    {
+                        expiresIn: "5h"
+                    });
                 resolve({
-                    usuario: 'user',
+                    ok: true,
+                    codusu: usuario_id,
+                    nombre: nombre,
+                    nivelusu: 1,
                     token: token
                 });
-
-
-
-
-
-           
+            }catch (error) {
+                return reject(error);
+            }
         } 
     )},
 
